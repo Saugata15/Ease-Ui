@@ -4,55 +4,65 @@ import { Input, type InputProps } from "./Input";
 
 export const AnimatedInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
-    const elRef = useRef<HTMLInputElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
-      const el = elRef.current;
-      if (!el) return;
+      const input = inputRef.current;
+      if (!input) return;
 
-      el.style.willChange = "box-shadow, transform";
+      input.style.willChange = "transform, box-shadow";
 
-      const onFocus = () => {
-        gsap.fromTo(
-          el,
-          { boxShadow: "0 0 0 rgba(0,0,0,0)" },
-          {
-            boxShadow: "0 6px 20px rgba(59,130,246,0.12)",
-            duration: 0.15,
-            ease: "power2.inOut",
-          }
-        );
-        gsap.fromTo(
-          el,
-          { y: 0 },
-          { y: -2, duration: 0.10, ease: "power2.out" }
-        );
-      };
-      const onBlur = () => {
-        gsap.to(el, {
-          boxShadow: "0 0 0 rgba(0,0,0,0)",
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      };
+      const ctx = gsap.context(() => {
+        const handleFocus = () => {
+          gsap.killTweensOf(input);
 
-      el.addEventListener("focus", onFocus);
-      el.addEventListener("blur", onBlur);
+          gsap.to(input, {
+            y: -2,
+            boxShadow:
+              "0 8px 24px color-mix(in srgb, var(--primary-color) 14%, transparent)",
+            duration: 0.2,
+            ease: "power2.out",
+          });
+        };
+
+        const handleBlur = () => {
+          gsap.killTweensOf(input);
+
+          gsap.to(input, {
+            y: 0,
+            boxShadow:
+              "0 2px 8px color-mix(in srgb, var(--text-color) 8%, transparent)",
+            duration: 0.25,
+            ease: "power2.out",
+          });
+        };
+
+        input.addEventListener("focus", handleFocus);
+        input.addEventListener("blur", handleBlur);
+
+        return () => {
+          input.removeEventListener("focus", handleFocus);
+          input.removeEventListener("blur", handleBlur);
+        };
+      }, input);
 
       return () => {
-        el.removeEventListener("focus", onFocus);
-        el.removeEventListener("blur", onBlur);
+        ctx.revert();
+        gsap.killTweensOf(input);
+        input.style.willChange = "";
       };
     }, []);
 
-    // forward refs: prefer external ref, else internal elRef
     return (
       <Input
         ref={(node) => {
-          elRef.current = node;
-          if (typeof ref === "function") ref(node);
-          else if (ref) (ref as any).current = node;
+          inputRef.current = node;
+
+          if (typeof ref === "function") {
+            ref(node);
+          } else if (ref) {
+            ref.current = node;
+          }
         }}
         {...props}
         className={className}
@@ -60,4 +70,5 @@ export const AnimatedInput = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
 AnimatedInput.displayName = "AnimatedInput";

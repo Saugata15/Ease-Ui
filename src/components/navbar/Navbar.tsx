@@ -1,15 +1,15 @@
-// Navbar.tsx
 import { Slot } from "@radix-ui/react-slot";
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/libs/utils";
 import { entranceAnimations } from "@/libs/animations/entranceAnimation";
-import { hoverAnimations } from "@/libs/animations/hoverAnimation";
-import gsap from "gsap";
 import { Button } from "../Button";
+import { Menu } from "lucide-react";
 
 const navbarVariants = cva(
-  `w-full flex items-center justify-between px-6 py-4 rounded-md border border-gray-200 transition-all`,
+  `relative w-full flex items-center justify-between
+   px-4 sm:px-6 py-4 rounded-md border border-gray-200
+   transition-all overflow-visible`,
   {
     variants: {
       variant: {
@@ -18,6 +18,7 @@ const navbarVariants = cva(
         primary: "bg-indigo-600 text-white",
         glass: "backdrop-blur-md bg-white/10 text-white border border-white/20",
       },
+
       size: {
         default: "h-16",
         sm: "h-12",
@@ -25,33 +26,48 @@ const navbarVariants = cva(
         xl: "h-24",
       },
     },
+
     defaultVariants: {
       variant: "light",
       size: "default",
     },
-  }
+  },
 );
 
-interface NavbarProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof navbarVariants> {
-  asChild?: boolean;
-  animation?: keyof typeof entranceAnimations;
-  hoverAnimation?: keyof typeof hoverAnimations;
+interface NavItem {
+  label: string;
+  href: string;
 }
 
-const Navbar = forwardRef<HTMLElement, NavbarProps>(
+interface NavbarButton {
+  label: string;
+  href?: string;
+  variant?: "primary" | "secondary" | "outline";
+}
+
+interface NavbarProps
+  extends
+    React.HTMLAttributes<HTMLElement>,
+    VariantProps<typeof navbarVariants> {
+  asChild?: boolean;
+  navItems: NavItem[];
+  navButton: NavbarButton;
+  animation?: keyof typeof entranceAnimations;
+}
+
+const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
   (
     {
       className,
       variant,
       size,
+      navItems = [],
+      navButton,
       asChild = false,
       animation = "fadeIn",
-      hoverAnimation = "none",
       ...props
     },
-    ref
+    ref,
   ) => {
     const Comp = asChild ? Slot : "nav";
     const navbarRef = useRef<HTMLElement | null>(null);
@@ -61,44 +77,53 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>(
       entranceAnimations[animation]?.(navbarRef.current);
     }, [animation]);
 
-    const handleMouseEnter = () => {
-      hoverAnimations[hoverAnimation]?.(navbarRef.current!);
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(navbarRef.current, {
-        scale: 1,
-        rotation: 0,
-        y: 0,
-        duration: 0.1,
-      });
-    };
-
     return (
       <Comp
         ref={(node) => {
           navbarRef.current = node as HTMLElement;
-          if (typeof ref === "function") ref(node as HTMLElement);
-          else if (ref)
+
+          if (typeof ref === "function") {
+            ref(node as HTMLElement);
+          } else if (ref) {
             (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+          }
         }}
         className={cn(navbarVariants({ variant, size }), className)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <h1>Logo</h1>
-        <div className="flex gap-5">
-          <a href="">Home</a>
-          <a href="">About</a>
-          <a href="">Customer</a>
+        {/* Logo */}
+        <h1 className="shrink-0 text-lg font-semibold sm:text-xl">Logo</h1>
+
+        {/* Desktop Navigation */}
+        <div className="hidden items-center gap-5 md:flex">
+          {navItems?.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="whitespace-nowrap"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
-        <div>
-          <Button hoverAnimation="none">Profile</Button>
+
+        {/* Desktop Profile */}
+        <div className="hidden shrink-0 md:block">
+          <Button hoverAnimation="none" variant={navButton.variant}>
+            <a href={navButton?.href || "#"}>{navButton?.label}</a>
+          </Button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          type="button"
+          className="flex shrink-0 items-center justify-center rounded-md p-2 transition-colors hover:bg-black/10 md:hidden"
+        >
+          <Menu size={22} />
+        </button>
       </Comp>
     );
-  }
+  },
 );
 
 Navbar.displayName = "Navbar";

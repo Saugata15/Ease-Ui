@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Code } from "lucide-react";
+import { Code, Eye, EyeOff } from "lucide-react";
 import CodeBlock from "@/components/Personal/CodeBlock";
 
 interface ComponentDemoProps {
@@ -8,26 +8,82 @@ interface ComponentDemoProps {
   showCode?: boolean;
 }
 
-const ComponentDemo = ({ children, code }: ComponentDemoProps) => {
-  const [isCodeVisible, setIsCodeVisible] = useState(false);
+const ComponentDemo = ({
+  children,
+  code,
+  showCode = false,
+}: ComponentDemoProps) => {
+  const [isCodeVisible, setIsCodeVisible] = useState(showCode);
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-sm bg-gray-200">
-      <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-gray-50">
-        <span className="text-sm font-medium text-gray-700">Preview</span>
+    <div className="w-full min-w-0 overflow-hidden rounded-xl border border-(--border-color) bg-(--card-bg) shadow-sm">
+      {/* Header */}
+      <div className="flex min-h-12 items-center justify-between gap-4 border-b border-(--border-color) bg-(--bg-box-light) px-3 sm:px-4">
+        {/* Title */}
+        <div className="flex items-center gap-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-(--primary-soft)">
+            <Eye size={14} className="text-(--primary-color)" />
+          </div>
+
+          <div>
+            <p className="text-sm font-medium text-(--heading-color)">
+              Preview
+            </p>
+
+            <p className="hidden text-xs text-(--muted-text) sm:block">
+              Interactive component preview
+            </p>
+          </div>
+        </div>
+
+        {/* Code Toggle */}
         <button
-          onClick={() => setIsCodeVisible(!isCodeVisible)}
-          className="flex items-center gap-1 px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded transition-colors"
+          type="button"
+          onClick={() => setIsCodeVisible((prev) => !prev)}
+          aria-expanded={isCodeVisible}
+          className="flex shrink-0 items-center gap-2 rounded-md border border-(--border-color) bg-(--card-bg) px-2.5 py-1.5 text-xs font-medium text-(--text-color) transition-all hover:bg-(--hover-bg) active:scale-[0.98] sm:px-3 sm:text-sm cursor-pointer"
         >
-          <Code size={14} />
-          {isCodeVisible ? "Hide Code" : "View Code"}
+          {isCodeVisible ? <EyeOff size={14} /> : <Code size={14} />}
+
+          <span className="hidden sm:inline">
+            {isCodeVisible ? "Hide Code" : "View Code"}
+          </span>
+
+          <span className="sm:hidden">{isCodeVisible ? "Hide" : "Code"}</span>
         </button>
       </div>
 
-      <div className="py-20 px-4 flex items-center justify-center">{children}</div>
+      {/* Preview */}
+      <div className="relative w-full min-w-0 overflow-hidden bg-(--bg-color) p-5 sm:p-8 lg:p-12">
+        {/* Subtle grid */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: `
+              linear-gradient(
+                to right,
+                var(--border-subtle) 1px,
+                transparent 1px
+              ),
+              linear-gradient(
+                to bottom,
+                var(--border-subtle) 1px,
+                transparent 1px
+              )
+            `,
+            backgroundSize: "24px 24px",
+          }}
+        />
 
+        {/* Content */}
+        <div className="relative flex min-h-48 w-full min-w-0 items-center justify-center">
+          {children}
+        </div>
+      </div>
+
+      {/* Code */}
       {isCodeVisible && (
-        <div className="border-t border-gray-200">
+        <div className="border-t border-(--border-color) bg-(--bg-box-light)">
           <CodeBlock code={code} />
         </div>
       )}

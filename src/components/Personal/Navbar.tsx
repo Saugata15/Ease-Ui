@@ -1,65 +1,334 @@
 import { toggleTheme } from "@/features/ThemeSlice";
-import { Moon, Search, Sun } from "lucide-react";
+import { Menu, Moon, Search, Sun, X } from "lucide-react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
-const Navbar = () => {
+interface NavItem {
+  label: string;
+  path: string;
+}
+
+interface NavbarProps {
+  logo?: string;
+  navItems?: NavItem[];
+  showSearch?: boolean;
+  showThemeToggle?: boolean;
+}
+
+const defaultNavItems: NavItem[] = [
+  {
+    label: "Home",
+    path: "/",
+  },
+  {
+    label: "Components",
+    path: "/components",
+  },
+  {
+    label: "About",
+    path: "/about",
+  },
+  {
+    label: "Templates",
+    path: "/templates",
+  },
+];
+
+const Navbar = ({
+  logo = "EaseUi",
+  navItems = defaultNavItems,
+  showSearch = true,
+  showThemeToggle = true,
+}: NavbarProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { mode } = useSelector(
-    (state: { theme: { mode: string } }) => state.theme
+    (state: { theme: { mode: string } }) => state.theme,
   );
-  console.log("this is theme->", mode);
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme());
+  };
 
   return (
-    <nav className="h-16 w-full flex items-center justify-between px-8">
-      <div className="flex items-center gap-10">
-        <h1
-          onClick={() => navigate("/")}
-          className="font-bold text-2xl cursor-pointer"
-        >
-          EaseUi
-        </h1>
+    <nav
+      className="
+        sticky top-0 z-50
+        w-full h-16
+        border-b border-(--border-color)
+        bg-(--bg-color)
+      "
+    >
+      <div
+        className="
+          max-w-7xl mx-auto
+          h-full
+          px-4 sm:px-6 lg:px-8
+          flex items-center justify-between
+        "
+      >
+        {/* Logo + Search */}
+        <div className="flex items-center gap-6 lg:gap-10">
+          {/* Logo */}
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="
+              text-2xl sm:text-4xl
+              font-bold
+              tracking-tight
+              text-(--heading-color)
+              cursor-pointer
+              select-none
+            "
+          >
+            {logo === "EaseUi" ? (
+              <>
+                Ease<span className="text-(--primary-color)">Ui</span>
+              </>
+            ) : (
+              logo
+            )}
+          </button>
 
-        <div className="hidden sm:flex items-center bg-transparent rounded-md px-3 py-1.5 shadow-xs shadow-gray-300 border border-gray-200">
-          <Search size={18} className="text-gray-500" />
-          <input
-            type="text"
-            placeholder="Search components"
-            className="ml-2 bg-transparent outline-none text-sm text-gray-700 placeholder-gray-400"
-          />
+          {/* Search */}
+          {showSearch && (
+            <div
+              className="
+                hidden sm:flex
+                items-center
+                w-48 md:w-64 lg:w-72
+                h-10
+                px-3
+                rounded-lg
+                border border-(--border-color)
+                bg-(--bg-box-light)
+                focus-within:border-(--primary-color)
+              "
+            >
+              <Search
+                size={17}
+                className="shrink-0 text-(--muted-text)"
+              />
+
+              <input
+                type="text"
+                placeholder="Search components..."
+                className="
+                  w-full
+                  ml-2
+                  bg-transparent
+                  outline-none
+                  text-sm
+                  text-(--text-color)
+                  placeholder:text-(--placeholder-text)
+                "
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center">
+          <ul className="flex items-center gap-1">
+            {navItems.map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  end={item.path === "/"}
+                  className={({ isActive }) =>
+                    `
+                    px-4 py-2
+                    rounded-md
+                    text-sm font-medium
+                    transition-colors
+                    cursor-pointer
+                    ${
+                      isActive
+                        ? "bg-(--hover-bg) text-(--primary-color)"
+                        : "text-(--text-color) hover:bg-(--hover-bg)"
+                    }
+                  `
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+
+          {/* Divider */}
+          {showThemeToggle && (
+            <div className="h-6 w-px bg-(--border-color) mx-3" />
+          )}
+
+          {/* Theme Toggle */}
+          {showThemeToggle && (
+            <button
+              type="button"
+              onClick={handleThemeToggle}
+              aria-label="Toggle theme"
+              className="
+                flex items-center justify-center
+                w-9 h-9
+                rounded-full
+                border border-(--border-color)
+                bg-(--bg-box-light)
+                text-(--text-color)
+                hover:bg-(--hover-bg)
+                cursor-pointer
+                transition-colors
+              "
+            >
+              {mode === "dark" ? (
+                <Sun
+                  size={18}
+                  className="text-(--primary-color)"
+                />
+              ) : (
+                <Moon
+                  size={18}
+                  className="text-(--muted-text)"
+                />
+              )}
+            </button>
+          )}
+        </div>
+
+        {/* Mobile Controls */}
+        <div className="flex lg:hidden items-center gap-2">
+          {/* Theme Toggle */}
+          {showThemeToggle && (
+            <button
+              type="button"
+              onClick={handleThemeToggle}
+              aria-label="Toggle theme"
+              className="
+                flex items-center justify-center
+                w-9 h-9
+                rounded-full
+                border border-(--border-color)
+                bg-(--bg-box-light)
+                text-(--text-color)
+                hover:bg-(--hover-bg)
+                cursor-pointer
+              "
+            >
+              {mode === "dark" ? (
+                <Sun
+                  size={18}
+                  className="text-(--primary-color)"
+                />
+              ) : (
+                <Moon
+                  size={18}
+                  className="text-(--muted-text)"
+                />
+              )}
+            </button>
+          )}
+
+          {/* Menu */}
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            className="
+              flex items-center justify-center
+              w-9 h-9
+              rounded-md
+              border border-(--border-color)
+              bg-(--bg-box-light)
+              text-(--text-color)
+              hover:bg-(--hover-bg)
+              cursor-pointer
+            "
+          >
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
-      <ul className="hidden md:flex items-center gap-6 text-gray-500">
-        <li
-          onClick={() => navigate("components")}
-          className="cursor-pointer hover:text-black"
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div
+          className="
+            lg:hidden
+            absolute top-16 left-0
+            w-full
+            px-4 py-4
+            bg-(--bg-color)
+            border-b border-(--border-color)
+            shadow-lg
+          "
         >
-          Components
-        </li>
-        <li className="cursor-pointer hover:text-black">About</li>
-        <li className="cursor-pointer hover:text-black">Templates</li>
-        {mode === "dark" && (
-          <li
-            className="cursor-pointer p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-            onClick={() => dispatch(toggleTheme())}
-          >
-            <Sun size={20} className="text-yellow-400" />
-          </li>
-        )}
-        {mode === "light" && (
-          <li
-            className="cursor-pointer p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-            onClick={() => dispatch(toggleTheme())}
-          >
-            <Moon size={20} className="text-gray-600 dark:text-gray-400" />
-          </li>
-        )}
-      </ul>
+          {/* Mobile Search */}
+          {showSearch && (
+            <div
+              className="
+                flex items-center
+                h-10
+                px-3
+                mb-4
+                rounded-lg
+                border border-(--border-color)
+                bg-(--bg-box-light)
+              "
+            >
+              <Search
+                size={17}
+                className="text-(--muted-text)"
+              />
 
-      {/* Mobile Hamburger */}
-      <button className="md:hidden text-gray-700">☰</button>
+              <input
+                type="text"
+                placeholder="Search components..."
+                className="
+                  w-full
+                  ml-2
+                  bg-transparent
+                  outline-none
+                  text-sm
+                  text-(--text-color)
+                  placeholder:text-(--placeholder-text)
+                "
+              />
+            </div>
+          )}
+
+          {/* Mobile Links */}
+          <div className="flex flex-col gap-1">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path === "/"}
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  `
+                  w-full
+                  px-4 py-3
+                  rounded-md
+                  text-sm font-medium
+                  transition-colors
+                  ${
+                    isActive
+                      ? "bg-(--hover-bg) text-(--primary-color)"
+                      : "text-(--text-color) hover:bg-(--hover-bg)"
+                  }
+                `
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

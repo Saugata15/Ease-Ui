@@ -1,22 +1,69 @@
 @import "tailwindcss";
 :root {
+  /* Page */
   --bg-color: #ffffff;
-  --text-color: #000000;
+  --text-color: #18181b;
+  --heading-color: #09090b;
+
+  /* Brand */
   --primary-color: #2563eb;
-  /* --card-bg: #f3f4f6; */
+  --primary-hover: #1d4ed8;
+  --primary-soft: #eff6ff;
+
+  /* Borders */
+  --border-color: #e4e4e7;
+  --border-subtle: #f0f0f2;
+
+  /* Surfaces */
+  --bg-box: #f4f4f5;
+  --bg-box-light: #fafafa;
+  --card-bg: #ffffff;
+
+  /* Text hierarchy */
+  --muted-text: #71717a;
+  --placeholder-text: #a1a1aa;
+
+  /* Interaction */
+  --hover-bg: #f4f4f5;
 }
+
 
 [data-theme="dark"] {
-  --bg-color: #18181b;
-  --text-color: #f4f4f5;
-  --primary-color: #3b82f6;
-  --card-bg: #27272a;
+  /* Page */
+  --bg-color: #09090b;
+  --text-color: #e4e4e7;
+  --heading-color: #fafafa;
+
+  /* Brand */
+  --primary-color: #60a5fa;
+  --primary-hover: #93c5fd;
+  --primary-soft: rgba(59, 130, 246, 0.12);
+
+  /* Borders */
+  --border-color: #27272a;
+  --border-subtle: #1f1f22;
+
+  /* Surfaces */
+  --bg-box: #18181b;
+  --bg-box-light: #111113;
+  --card-bg: #18181b;
+
+  /* Text hierarchy */
+  --muted-text: #a1a1aa;
+  --placeholder-text: #71717a;
+
+  /* Interaction */
+  --hover-bg: #18181b;
 }
 
+html,
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.25s, color 0.25s;
+
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
 }
 
 @keyframes fadeIn {

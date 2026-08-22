@@ -1,4 +1,3 @@
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
 import { cn } from "@/libs/utils";
@@ -12,7 +11,7 @@ const modalVariants = cva(
           "bg-white text-gray-900 shadow-2xl border border-gray-200 hover:shadow-xl",
         dark: "bg-slate-900 text-white shadow-lg border border-slate-700 hover:shadow-xl",
         outline:
-          "bg-transparent border border-gray-400 text-gray-800 dark:border-gray-600 dark:text-gray-100 backdrop-blur-md",
+          "bg-transparent border border-gray-400 text-gray-800 [data-theme=dark]:border-gray-600 text-(--text-color) backdrop-blur-md",
       },
       size: {
         sm: "w-[90%] max-w-sm p-4",
@@ -24,13 +23,13 @@ const modalVariants = cva(
       variant: "light",
       size: "md",
     },
-  }
+  },
 );
 
 interface ModalProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof modalVariants> {
-  asChild?: boolean;
   isOpen?: boolean;
   title?: string;
   description?: string;
@@ -44,7 +43,6 @@ interface ModalProps
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (
     {
-      asChild = false,
       title,
       description,
       children,
@@ -58,10 +56,11 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       size,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (!isOpen) return null;
-    const Comp = asChild ? Slot : "div";
+
+    const isDarkMode = variant === "dark" || variant === "outline";
 
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -70,24 +69,29 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           onClick={onClose}
         />
 
-        <Comp
+        <div
           ref={ref}
           className={cn(
             modalVariants({ variant, size }),
             "relative rounded-xl transform scale-100 transition-all duration-300 animate-fadeIn",
-            className
+            className,
           )}
           {...props}
         >
-          <div>
+          <div className="flex flex-col items-start">
             {title && (
-              <h3 className="text-xl font-semibold mb-2 text-[inherit]">
+              <h3 className="text-xl font-semibold mb-2 text-inherit">
                 {title}
               </h3>
             )}
 
             {description && (
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-[inherit]">
+              <p
+                className={cn(
+                  "mb-4",
+                  isDarkMode ? "text-gray-300" : "text-gray-600",
+                )}
+              >
                 {description}
               </p>
             )}
@@ -98,10 +102,10 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               <button
                 onClick={onClose}
                 className={cn(
-                  "px-4 py-2 rounded-md font-medium transition",
-                  variant === "dark"
+                  "px-4 py-2 rounded-md font-medium transition text-(--text-color) cursor-pointer",
+                  isDarkMode
                     ? "border border-slate-600 hover:bg-slate-700"
-                    : "border border-gray-300 hover:bg-gray-100"
+                    : "text-slate-700 border border-gray-400 hover:bg-gray-200 ",
                 )}
               >
                 {closeText}
@@ -110,20 +114,20 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               <button
                 onClick={onDone}
                 className={cn(
-                  "px-4 py-2 rounded-md text-white font-medium transition",
-                  variant === "dark"
+                  "px-4 py-2 rounded-md text-white font-medium transition cursor-pointer",
+                  isDarkMode
                     ? "bg-indigo-500 hover:bg-indigo-600"
-                    : "bg-indigo-600 hover:bg-indigo-700"
+                    : "bg-indigo-600 hover:bg-indigo-700",
                 )}
               >
                 {doneText}
               </button>
             </div>
           </div>
-        </Comp>
+        </div>
       </div>
     );
-  }
+  },
 );
 
 Modal.displayName = "Modal";

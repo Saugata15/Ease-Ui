@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import { cn } from "@/libs/utils";
-// import gsap from "gsap";
+import gsap from "gsap";
 import { entranceAnimations } from "@/libs/animations/entranceAnimation";
 import { hoverAnimations } from "@/libs/animations/hoverAnimation";
 
@@ -29,7 +29,7 @@ const buttonVariants = cva(
         ghost: "bg-gray-50 hover:bg-gray-100 text-gray-700",
         link: "bg-transparent hover:bg-transparent text-indigo-600",
         outline:
-          "bg-transparent hover:bg-gray-100 text-gray-700 border border-gray-300",
+          "bg-transparent text-[var(--text-color)] border border-gray-300",
       },
       size: {
         default: "px-9 py-3",

@@ -15,90 +15,139 @@ export const InputWithIcon = React.forwardRef<HTMLInputElement, Props>(
     {
       icon,
       iconPosition = "left",
-      className,
-      iconColor = "#9ca3af",
+      iconColor = "color-mix(in srgb, var(--text-color) 45%, transparent)",
       animated = true,
+      className,
+      size = "md",
+      disabled,
       ...props
     },
     ref
   ) => {
     const wrapperRef = useRef<HTMLDivElement | null>(null);
-    const iconRef = useRef<HTMLDivElement | null>(null);
+    const iconRef = useRef<HTMLSpanElement | null>(null);
 
     useEffect(() => {
-      if (!animated || !iconRef.current || !wrapperRef.current) return;
-      const input = wrapperRef.current.querySelector("input");
+      const iconElement = iconRef.current;
+      const wrapper = wrapperRef.current;
+
+      if (!animated || !iconElement || !wrapper) return;
+
+      const input = wrapper.querySelector("input");
+      if (!input) return;
 
       const handleFocus = () => {
-        gsap.to(iconRef.current, {
-          scale: 1.15,
-          y: 0,
-          color: "#3b82f6",
-          duration: 0.15,
+        gsap.killTweensOf(iconElement);
+
+        gsap.to(iconElement, {
+          scale: 1.12,
+          color: "var(--primary-color)",
+          duration: 0.2,
           ease: "power2.out",
         });
       };
+
       const handleBlur = () => {
-        gsap.to(iconRef.current, {
+        gsap.killTweensOf(iconElement);
+
+        gsap.to(iconElement, {
           scale: 1,
-          y: 0,
           color: iconColor,
           duration: 0.25,
           ease: "power2.out",
         });
       };
 
-      input?.addEventListener("focus", handleFocus);
-      input?.addEventListener("blur", handleBlur);
+      input.addEventListener("focus", handleFocus);
+      input.addEventListener("blur", handleBlur);
 
       return () => {
-        input?.removeEventListener("focus", handleFocus);
-        input?.removeEventListener("blur", handleBlur);
+        input.removeEventListener("focus", handleFocus);
+        input.removeEventListener("blur", handleBlur);
+
+        gsap.killTweensOf(iconElement);
       };
     }, [animated, iconColor]);
 
-    const paddingClass = icon
-      ? iconPosition === "left"
-        ? "pl-12"
-        : "pr-12"
-      : "";
+    if (!icon) {
+      return (
+        <Input
+          ref={ref}
+          {...props}
+          size={size}
+          disabled={disabled}
+          className={className}
+        />
+      );
+    }
+
+    const paddingClass =
+      iconPosition === "left" ? "pl-11" : "pr-11";
+
+    const iconPositionClass = {
+      sm: "top-[2.25rem]",
+      md: "top-[2.75rem]",
+      lg: "top-[3.25rem]",
+    }[size ?? "md"];
 
     return (
       <div ref={wrapperRef} className="relative w-full">
-        {icon && iconPosition === "left" && (
-          <div
+        {iconPosition === "left" && (
+          <span
             ref={iconRef}
+            aria-hidden="true"
             className={cn(
-              "absolute left-4 top-11 -translate-y-1/2 text-gray-400 transition-all duration-200 pointer-events-none",
-              animated && "will-change-transform will-change-color"
+              "pointer-events-none absolute left-3.5 z-10",
+              "-translate-y-1/2",
+              "flex items-center justify-center",
+              "text-(--text-color)",
+              "transition-colors duration-200",
+              iconPositionClass,
+              animated && "will-change-transform"
             )}
-            style={{ color: iconColor }}
+            style={{
+              color: iconColor,
+              opacity: disabled ? 0.4 : 0.6,
+            }}
           >
             {icon}
-          </div>
+          </span>
         )}
 
         <Input
           ref={ref}
           {...props}
+          size={size}
+          disabled={disabled}
           className={cn(
-            "rounded-xl border border-gray-300 bg-white shadow-sm hover:border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200",
+            "rounded-xl",
+            "shadow-sm",
+            "transition-all duration-200",
             paddingClass,
             className
           )}
         />
 
-        {icon && iconPosition === "right" && (
-          <div
+        {iconPosition === "right" && (
+          <span
             ref={iconRef}
+            aria-hidden="true"
             className={cn(
-              "absolute right-1/2 top-1/2 -translate-y-1/2 text-gray-400 transition-all duration-200 pointer-events-none",
-              animated && "will-change-transform will-change-color"
+              "pointer-events-none absolute right-3.5 z-10",
+              "-translate-y-1/2",
+              "flex items-center justify-center",
+              "text-(--text-color)",
+              "transition-colors duration-200",
+              iconPositionClass,
+              animated && "will-change-transform"
             )}
-            style={{ color: iconColor }}
+            style={{
+              color: iconColor,
+              opacity: disabled ? 0.4 : 0.6,
+            }}
           >
             {icon}
-          </div>
+          </span>
         )}
       </div>
     );

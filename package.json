@@ -1,8 +1,8 @@
 {
-  "name": "dev-ease-ui",
+  "name": "ease-ui",
   "version": "1.0.6",
-  "description": "A modern React UI library by Devendra Dhote",
-  "author": "Devendra Dhote",
+  "description": "A modern React UI library by Saugata Das",
+  "author": "Saugata das",
   "license": "MIT",
   "main": "dist/easeui.umd.js",
   "module": "dist/easeui.es.js",

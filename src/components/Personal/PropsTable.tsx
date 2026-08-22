@@ -9,33 +9,59 @@ interface PropsTableProps {
 
 const PropsTable = ({ data }: PropsTableProps) => {
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-200 shadow-sm">
-      <table className="w-full">
-        <thead className="">
-          <tr>
-            <th className="px-4 py-3 text-left text-sm font-semibold ">Prop</th>
-            <th className="px-4 py-3 text-left text-sm font-semibold ">Type</th>
-            <th className="px-4 py-3 text-left text-sm font-semibold ">
+    <div className="w-full overflow-x-auto rounded-xl border border-(--border-color) bg-(--bg-box-light) shadow-sm">
+      <table className="w-full min-w-200 border-collapse">
+        {/* Header */}
+        <thead>
+          <tr className="border-b border-(--border-color) bg-(--bg-box)">
+            <th className="whitespace-nowrap px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-(--muted-text)">
+              Prop
+            </th>
+
+            <th className="whitespace-nowrap px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-(--muted-text)">
+              Type
+            </th>
+
+            <th className="whitespace-nowrap px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-(--muted-text)">
               Default
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold ">
+
+            <th className="whitespace-nowrap px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-(--muted-text)">
               Description
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200">
-          {data.map((row, i) => (
-            <tr key={i} className="hover:bg-gray-50 transition-colors">
-              <td className="px-4 py-3 text-sm font-mono text-blue-600">
-                {row.prop}
+
+        {/* Body */}
+        <tbody>
+          {data.map((row, index) => (
+            <tr
+              key={`${row.prop}-${index}`}
+              className="border-b border-(--border-subtle) last:border-b-0 transition-colors hover:bg-(--hover-bg)"
+            >
+              {/* Prop */}
+              <td className="px-5 py-4 align-top">
+                <code className="rounded-md bg-(--primary-soft) px-2 py-1 font-mono text-xs font-medium text-(--primary-color)">
+                  {row.prop}
+                </code>
               </td>
-              <td className="px-4 py-3 text-sm font-mono text-gray-600">
-                {row.type}
+
+              {/* Type */}
+              <td className="px-5 py-4 align-top">
+                <code className="font-mono text-xs leading-6 text-(--text-color)">
+                  {row.type}
+                </code>
               </td>
-              <td className="px-4 py-3 text-sm font-mono text-gray-500">
-                {row.default}
+
+              {/* Default */}
+              <td className="px-5 py-4 align-top">
+                <code className="rounded-md bg-(--bg-box) px-2 py-1 font-mono text-xs text-(--text-color)">
+                  {row.default}
+                </code>
               </td>
-              <td className="px-4 py-3 text-sm text-gray-700">
+
+              {/* Description */}
+              <td className="max-w-md px-5 py-4 align-top text-sm leading-6 text-(--muted-text)">
                 {row.description}
               </td>
             </tr>

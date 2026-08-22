@@ -1,132 +1,142 @@
 import { useState } from "react";
-import ComponentDemo from "../ComponentsDemo";
-import PropsTable from "@/components/Personal/PropsTable";
+
 import { Button } from "@/components/Button/Button";
 import { Modal } from "@/components/Modal/Modal";
+
+import DocsHeader from "@/components/Personal/DocsHeader";
+import DocsFeatures from "@/components/Personal/DocsFeatures";
+import DocsDemoSection from "@/components/Personal/DocsDemoSection";
+import DocsApiReference from "@/components/Personal/DocsApiReference";
+
+import {
+  lightModalCode,
+  darkModalCode,
+  outlineModalCode,
+  propsData,
+  features,
+} from "../utils/modalData";
+import DocsInstallation from "@/components/Personal/DocsInstallation";
 
 const ModalPage = () => {
   const [lightModal, setLightModal] = useState(false);
   const [darkModal, setDarkModal] = useState(false);
   const [outlineModal, setOutlineModal] = useState(false);
 
-  const usageCode = `import { Button } from "@/components/Button/Button";
-import { Modal } from "@/components/Modal/Modal";
-
-const [lightModal, setLightModal] = useState(false);
-const [darkModal, setDarkModal] = useState(false);
-const [outlineModal, setOutlineModal] = useState(false);
-
-<Button className="mr-4" variant="primary" onClick={() => setLightModel(true)}>Light Modal</Button>
-<Modal variant="light" size="sm" isOpen={lightModal} onClose={() => setLightModal(false)}>
-  <h2 className="text-lg font-semibold">Modal Title</h2>
-  <p>This is modal content.</p>
-</Modal>
-
-<Button className="mr-4" variant="dark" onClick={() => setDarkModal(true)}>Dark Modal</Button>
-<Modal variant="dark" size="sm" isOpen={darkModal} onClose={() => setDarkModal(false)}>
-  <h2 className="text-lg font-semibold">Modal Title</h2>
-  <p>This is modal content.</p>
-</Modal>
-
-<Button className="mr-4" variant="outline" onClick={() => setOutlineModal(true)}>Outline Modal</Button>
-<Modal variant="outline" size="sm" isOpen={outlineModal} onClose={() => setOutlineModal(false)}>
-  <h2 className="text-lg font-semibold">Modal Title</h2>
-  <p>This is modal content.</p>
-</Modal>
-`;
-
-  const propsData = [
-    {
-      prop: "isOpen",
-      type: "boolean",
-      default: "false",
-      description: "Controls modal visibility",
-    },
-    {
-      prop: "variant",
-      type: '"light" | "dark" | "outline"',
-      default: '"light"',
-      description: "The visual style variant of the Modal",
-    },
-    {
-      prop: "onClose",
-      type: "() => void",
-      default: "-",
-      description: "Callback when modal closes",
-    },
-    {
-      prop: "children",
-      type: "ReactNode",
-      default: "-",
-      description: "Content inside the modal",
-    },
-  ];
-
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Modal</h1>
-        <p className="text-xl text-gray-600">
-          The Modal component is used to display content in an overlay.
-        </p>
-      </div>
+    <div className="max-w-5xl mx-auto space-y-12">
+      {/* Header */}
+      <DocsHeader
+        title="Modal"
+        description="A flexible overlay component for displaying dialogs, forms, confirmations, and other focused content."
+        technologies={["React", "Tailwind CSS"]}
+      />
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Usage</h2>
-        <ComponentDemo code={usageCode}>
-          <Button
-            className="mr-4"
-            variant="primary"
-            onClick={() => setLightModal(true)}
-          >
-            Light Modal
-          </Button>
-          <Modal
-            variant="light"
-            size="sm"
-            isOpen={lightModal}
-            onClose={() => setLightModal(false)}
-          >
-            <h2 className="text-lg font-semibold">Modal Title</h2>
-            <p>This is modal content.</p>
-          </Modal>
+      {/* Usage */}
+      <section className="space-y-8">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold">Usage</h2>
 
-          <Button
-            className="mr-4"
-            variant="dark"
-            onClick={() => setDarkModal(true)}
-          >
-            Dark Modal
-          </Button>
-          <Modal
-            variant="dark"
-            size="lg"
-            isOpen={darkModal}
-            onClose={() => setDarkModal(false)}
-          >
-            <h2 className="text-lg font-semibold">Modal Title</h2>
-            <p>This is modal content.</p>
-          </Modal>
+          <p className="text-sm md:text-base text-(--muted-text-color)">
+            Click the buttons below to preview the different Modal variants.
+          </p>
+        </div>
 
-          <Button variant="outline" onClick={() => setOutlineModal(true)}>
-            Outline Modal
-          </Button>
-          <Modal
-            variant="outline"
-            size="sm"
-            isOpen={outlineModal}
-            onClose={() => setOutlineModal(false)}
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Light Modal */}
+          <DocsDemoSection
+            title="Light"
+            description="Clean light modal for standard content."
+            code={lightModalCode}
+            contentClassName="flex min-h-56 items-center justify-center p-8"
           >
-            <h2 className="text-lg font-semibold">Modal Title</h2>
-            <p>This is modal content.</p>
-          </Modal>
-        </ComponentDemo>
+            <Button variant="primary" onClick={() => setLightModal(true)}>
+              Light Modal
+            </Button>
+
+            <Modal
+              variant="light"
+              size="sm"
+              isOpen={lightModal}
+              onClose={() => setLightModal(false)}
+            >
+              <div className="space-y-3">
+                <h2 className="text-lg font-semibold">Light Modal</h2>
+
+                <p>This is an example of a light modal.</p>
+              </div>
+            </Modal>
+          </DocsDemoSection>
+
+          {/* Dark Modal */}
+          <DocsDemoSection
+            title="Dark"
+            description="Dark modal for darker interfaces."
+            code={darkModalCode}
+            contentClassName="flex min-h-56 items-center justify-center p-8"
+          >
+            <Button variant="dark" onClick={() => setDarkModal(true)}>
+              Dark Modal
+            </Button>
+
+            <Modal
+              variant="dark"
+              size="lg"
+              isOpen={darkModal}
+              onClose={() => setDarkModal(false)}
+            >
+              <div className="space-y-3">
+                <h2 className="text-lg font-semibold">Dark Modal</h2>
+
+                <p>This is an example of a dark modal.</p>
+              </div>
+            </Modal>
+          </DocsDemoSection>
+
+          {/* Outline Modal */}
+          <DocsDemoSection
+            title="Outline"
+            description="Subtle bordered modal for minimal interfaces."
+            code={outlineModalCode}
+            contentClassName="flex min-h-56 items-center justify-center p-8"
+          >
+            <Button variant="outline" onClick={() => setOutlineModal(true)}>
+              Outline Modal
+            </Button>
+
+            <Modal
+              variant="outline"
+              size="sm"
+              isOpen={outlineModal}
+              onClose={() => setOutlineModal(false)}
+            >
+              <div className="space-y-3">
+                <h2 className="text-lg font-semibold">Outline Modal</h2>
+
+                <p>This is an example of an outline modal.</p>
+              </div>
+            </Modal>
+          </DocsDemoSection>
+        </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">API Reference</h2>
-        <PropsTable data={propsData} />
-      </section>
+      {/* Installation */}
+      <DocsInstallation
+        packageName="ease-ui"
+        importCode={`import { Modal } from "ease-ui";`}
+      />
+
+      {/* Features */}
+      <DocsFeatures
+        title="Modal Features"
+        description="Everything you need to create flexible and accessible modal experiences."
+        features={features}
+      />
+
+      {/* API Reference */}
+      <DocsApiReference
+        data={propsData}
+        description="Available props for customizing the Modal component."
+      />
     </div>
   );
 };

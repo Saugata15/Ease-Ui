@@ -1,16 +1,24 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import HomeLayout from "../layouts/HomeLayout";
 import ComponentLayout from "../layouts/ComponentLayout";
 import HomePage from "../pages/HomePage";
-import ButtonPage from "../pages/components/ButtonPage";
-import CardPage from "@/pages/components/CardPage";
-import ModalPage from "@/pages/components/ModalPage";
-import InputPage from "@/pages/components/InputPage";
-import NavbarPage from "@/pages/components/NavbarPage";
 
-type Props = {};
+import { lazy } from "react";
+import ProgressPage from "@/pages/components/ProgressPage";
+import ToastPage from "@/pages/components/ToastPage";
+let AboutPage = lazy(() => import("@/pages/AboutPage"));
+let TemplatesPage = lazy(() => import("@/pages/TemplatesPage"));
+let TooltipPage = lazy(() => import("@/pages/components/TooltipPage"));
+let NavbarPage = lazy(() => import("@/pages/components/NavbarPage"));
+let InputPage = lazy(() => import("@/pages/components/InputPage"));
+let ModalPage = lazy(() => import("@/pages/components/ModalPage"));
+let CardPage = lazy(() => import("@/pages/components/CardPage"));
+let ButtonPage = lazy(() => import("@/pages/components/ButtonPage"));
+let TablePage = lazy(() => import("@/pages/components/TablePage"));
+let SkeletonPage = lazy(() => import("@/pages/components/SkeletonPage"));
+let BadgePage = lazy(() => import("@/pages/components/BadgePage"));
 
-const AppRouter = ({}: Props) => {
+const AppRouter = () => {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -21,9 +29,22 @@ const AppRouter = ({}: Props) => {
           element: <HomePage />,
         },
         {
+          path: "/about",
+          element: <AboutPage />,
+        },
+        {
+          path: "/templates",
+          element: <TemplatesPage />,
+        },
+        {
           path: "components",
           element: <ComponentLayout />,
           children: [
+            {
+              index: true,
+              element: <Navigate to="button" replace />,
+            },
+
             {
               path: "button",
               element: <ButtonPage />,
@@ -43,6 +64,30 @@ const AppRouter = ({}: Props) => {
             {
               path: "navbar",
               element: <NavbarPage />,
+            },
+            {
+              path: "tooltip",
+              element: <TooltipPage />,
+            },
+            {
+              path: "table",
+              element: <TablePage />,
+            },
+            {
+              path: "skeleton",
+              element: <SkeletonPage />,
+            },
+            {
+              path: "badge",
+              element: <BadgePage />,
+            },
+            {
+              path: "progress",
+              element: <ProgressPage />,
+            },
+            {
+              path: "toast",
+              element: <ToastPage />,
             },
           ],
         },

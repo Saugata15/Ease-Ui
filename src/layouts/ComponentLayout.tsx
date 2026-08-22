@@ -1,66 +1,129 @@
 import { useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router";
-import { Menu } from "lucide-react";
+import { NavLink, Outlet } from "react-router";
+import { Menu, X } from "lucide-react";
 
-type Props = {};
+const components = [
+  { label: "Button", path: "button" },
+  { label: "Card", path: "card" },
+  { label: "Modal", path: "modal" },
+  { label: "Input", path: "input" },
+  { label: "Navbar", path: "navbar" },
+  { label: "Tooltip", path: "tooltip" },
+  { label: "Table", path: "table" },
+  { label: "Skeleton", path: "skeleton" },
+  { label: "Badge", path: "badge" },
+  { label: "Progress", path: "progress" },
+  { label: "Toast", path: "toast" },
+];
 
-const ComponentLayout = ({}: Props) => {
-  const location = useLocation();
-  console.log(location);
-  const navigate = useNavigate();
+const ComponentLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const components = [
-    "Button",
-    "Card",
-    "Modal",
-    "Input",
-    "Navbar",
-    "Carousel",
-    "Tooltip",
-    "Layout",
-  ];
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
 
   return (
-    <div className="flex min-h-screen text-gray-900">
+    <div className="relative flex h-full min-h-0 overflow-hidden bg-(--bg-color) text-(--text-color)">
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <button
+          type="button"
+          aria-label="Close sidebar"
+          onClick={closeSidebar}
+          className="fixed inset-0 z-30 bg-black/20 backdrop-blur-[1px] md:hidden"
+        />
+      )}
+
+      {/* Mobile Menu Button */}
+      <button
+        type="button"
+        aria-label={sidebarOpen ? "Close navigation" : "Open navigation"}
+        aria-expanded={sidebarOpen}
+        onClick={() => setSidebarOpen((prev) => !prev)}
+        className="
+          fixed left-4 top-20 z-50
+          flex h-9 w-9 items-center justify-center
+          rounded-lg border border-(--border-color)
+          bg-(--card-bg)
+          text-(--text-color)
+          shadow-sm
+          transition-all
+          hover:bg-(--hover-bg)
+          active:scale-95
+          md:hidden
+        "
+      >
+        {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
+
+      {/* Sidebar */}
       <aside
         className={`
-          w-64 p-6 flex flex-col
-          border-r border-gray-200
-          fixed md:static top-0 left-0 h-full z-20
-          transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-          transition-transform duration-300 ease-in-out
-          md:translate-x-0
+          fixed left-0 top-16 bottom-0 z-40 w-56 lg:w-64 border-r border-(--border-color) px-4 py-6
+          transition-transform duration-300 ease-in-out md:top-16 md:translate-x-0
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <h2 className="text-md font-bold mb-6">Components</h2>
-        <ul className="flex flex-col gap-2">
-          {components.map((item) => (
-            <li
-              onClick={() => navigate(item.toLowerCase())}
-              key={item}
-              className={`cursor-pointer hover:text-black text-md hover:translate-x-1 transition-all duration-200 ease-in-out ${
-                location.pathname === `/components/${item.toLowerCase()}`
-                  ? "text-black"
-                  : "text-gray-400"
-              }`}
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
+        {/* Sidebar Header */}
+        <div className="mb-6 px-2">
+          <p className="text-xs font-semibold uppercase tracking-wider text-(--muted-text)">
+            Documentation
+          </p>
+
+          <h2 className="mt-1 text-base font-semibold text-(--heading-color)">
+            Components
+          </h2>
+        </div>
+
+        {/* Navigation */}
+        <nav aria-label="Component navigation">
+          <ul className="space-y-1">
+            {components.map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  onClick={closeSidebar}
+                  className={({ isActive }) =>
+                    `group flex items-center rounded-lg px-3 py-2.5 text-sm transition-all duration-200
+                    ${
+                      isActive
+                        ? `bg-(--primary-soft) font-medium text-(--primary-color)`
+                        : `text-(--muted-text) hover:bg-(--hover-bg) hover:text-(--text-color)`
+                    }
+                  `
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      {/* Active indicator */}
+                      <span
+                        className={`
+                          mr-3 h-1.5 w-1.5 rounded-full transition-all
+                          ${
+                            isActive
+                              ? "bg-(--primary-color)"
+                              : "bg-transparent group-hover:bg-(--border-color)"
+                          }
+                        `}
+                      />
+
+                      {item.label}
+                    </>
+                  )}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </aside>
 
-      <div className="flex-1 ml-10 overflow-auto h-screen p-6">
-        <button
-          className="md:hidden mb-4 text-gray-700"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          <Menu size={24} />
-        </button>
-
-        <Outlet />
-      </div>
+      {/* Main Content */}
+      <main className="min-w-0 flex-1 overflow-y-auto md:ml-56 lg:ml-64">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 md:px-8 lg:px-10 lg:py-10">
+          <Outlet />
+        </div>
+      </main>
     </div>
   );
 };
