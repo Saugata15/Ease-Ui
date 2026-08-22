@@ -1,39 +1,47 @@
-import { Link } from "react-router";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Code2, Github } from "lucide-react";
 
 import { Button } from "@/components/Button/Button";
+import { useNavigate } from "react-router";
 
 const AboutCTA = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-24">
-      <div className="relative overflow-hidden rounded-3xl border border-(--border-color) bg-(--card-bg) px-6 py-16 text-center">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.12),transparent_60%)]" />
+    <section className="rounded-3xl border border-(--border-color) bg-(--card-bg) p-6 sm:p-8 lg:p-10">
+      <div className="mx-auto max-w-2xl text-center">
+        <Code2 size={28} className="mx-auto mb-4 text-(--primary-color)" />
 
-        <Sparkles
-          size={28}
-          className="mx-auto text-(--primary-color)"
-        />
+        <h2 className="text-2xl font-semibold">Ready to build with Ease?</h2>
 
-        <h2 className="mt-5 text-3xl md:text-4xl font-bold">
-          Start building with EaseUI
-        </h2>
-
-        <p className="max-w-xl mx-auto mt-4 text-(--muted-text)">
-          Explore the component library and find the building blocks you need
-          for your next project.
+        <p className="mt-3 text-sm leading-6 text-(--muted-text-color)">
+          Install Ease UI and start building consistent React interfaces with
+          reusable components.
         </p>
 
-        <div className="flex justify-center mt-8">
-          <Link to="/components">
-            <Button
-              variant="primary"
-              size="lg"
-              hoverAnimation="scale"
-            >
-              Explore Components
-              <ArrowRight size={18} />
-            </Button>
-          </Link>
+        <div className="mx-auto mt-6 max-w-md rounded-xl border border-(--border-color) bg-(--bg-box) px-4 py-3 text-left font-mono text-sm">
+          <span className="text-(--muted-text-color)">$</span> npm install
+          ease-ui
+        </div>
+
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <Button
+            variant="primary"
+            hoverAnimation="scale"
+            onClick={() => navigate("/components")}
+          >
+            Get Started
+          </Button>
+
+          <Button
+            variant="outline"
+            hoverAnimation="scale"
+            onClick={() => {
+              window.open("https://github.com/Saugata15/Ease-Ui", "_blank");
+            }}
+          >
+            <Github size={16} />
+            View Source
+          </Button>
         </div>
       </div>
     </section>

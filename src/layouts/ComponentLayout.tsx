@@ -31,7 +31,7 @@ const ComponentLayout = () => {
           type="button"
           aria-label="Close sidebar"
           onClick={closeSidebar}
-          className="fixed inset-0 z-30 bg-black/20 backdrop-blur-[1px] md:hidden"
+          className="fixed inset-0 z-30 bg-black/40 backdrop-blur-[1px] md:hidden"
         />
       )}
 
@@ -61,7 +61,7 @@ const ComponentLayout = () => {
       <aside
         className={`
           fixed left-0 top-16 bottom-0 z-40 w-56 lg:w-64 border-r border-(--border-color) px-4 py-6
-          transition-transform duration-300 ease-in-out md:top-16 md:translate-x-0
+          transition-transform duration-300 ease-in-out md:top-16 md:translate-x-0 bg-(--bg-color)
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
