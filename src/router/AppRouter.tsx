@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import { lazy } from "react";
 import ProgressPage from "@/pages/components/ProgressPage";
 import ToastPage from "@/pages/components/ToastPage";
+import SpinnerPage from "@/pages/components/SpinnerPage";
 let AboutPage = lazy(() => import("@/pages/AboutPage"));
 let TemplatesPage = lazy(() => import("@/pages/TemplatesPage"));
 let TooltipPage = lazy(() => import("@/pages/components/TooltipPage"));
@@ -88,6 +89,10 @@ const AppRouter = () => {
             {
               path: "toast",
               element: <ToastPage />,
+            },
+            {
+              path: "spinner",
+              element: <SpinnerPage />,
             },
           ],
         },

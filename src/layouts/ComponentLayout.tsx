@@ -14,6 +14,7 @@ const components = [
   { label: "Badge", path: "badge" },
   { label: "Progress", path: "progress" },
   { label: "Toast", path: "toast" },
+  { label: "Spinner", path: "spinner" },
 ];
 
 const ComponentLayout = () => {
@@ -60,7 +61,7 @@ const ComponentLayout = () => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed left-0 top-16 bottom-0 z-40 w-56 lg:w-64 border-r border-(--border-color) px-4 py-6
+          fixed overflow-y-scroll left-0 top-16 bottom-0 z-40 w-56 lg:w-64 border-r border-(--border-color) px-4 py-6
           transition-transform duration-300 ease-in-out md:top-16 md:translate-x-0 bg-(--bg-color)
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}

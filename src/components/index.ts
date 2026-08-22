@@ -10,3 +10,4 @@ export * from "./Skeleton/Skeleton";
 export * from "./Badge/Badge";
 export * from "./Progress/Progress";
 export * from "./Toast/Toast";
+export * from "./Spinner/Spinner"

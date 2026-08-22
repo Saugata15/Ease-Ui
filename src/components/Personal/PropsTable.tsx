@@ -40,7 +40,7 @@ const PropsTable = ({ data }: PropsTableProps) => {
               className="border-b border-(--border-subtle) last:border-b-0 transition-colors hover:bg-(--hover-bg)"
             >
               {/* Prop */}
-              <td className="px-5 py-4 align-top">
+              <td className="px-5 py-4 align-top whitespace-nowrap">
                 <code className="rounded-md bg-(--primary-soft) px-2 py-1 font-mono text-xs font-medium text-(--primary-color)">
                   {row.prop}
                 </code>
