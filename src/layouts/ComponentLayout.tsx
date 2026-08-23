@@ -26,14 +26,14 @@ const ComponentLayout = () => {
   };
 
   return (
-    <div className="relative flex h-full min-h-0 overflow-hidden bg-(--bg-color) text-(--text-color)">
+    <div className="relative flex h-full min-h-0 overflow-x-hidden bg-(--bg-color) text-(--text-color)">
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <button
           type="button"
           aria-label="Close sidebar"
           onClick={closeSidebar}
-          className="fixed inset-0 z-30 bg-black/40 backdrop-blur-[1px] md:hidden"
+          className="fixed inset-0 z-20 bg-black/40 backdrop-blur-[1px] md:hidden"
         />
       )}
 
@@ -43,8 +43,8 @@ const ComponentLayout = () => {
         aria-label={sidebarOpen ? "Close navigation" : "Open navigation"}
         aria-expanded={sidebarOpen}
         onClick={() => setSidebarOpen((prev) => !prev)}
-        className="
-          fixed left-4 top-20 z-50
+        className=
+          {`fixed top-20 z-35
           flex h-9 w-9 items-center justify-center
           rounded-lg border border-(--border-color)
           bg-(--card-bg)
@@ -53,8 +53,7 @@ const ComponentLayout = () => {
           transition-all
           hover:bg-(--hover-bg)
           active:scale-95
-          md:hidden
-        "
+          md:hidden ${sidebarOpen ? `left-40` : `left-4`}`}
       >
         {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
       </button>
@@ -62,7 +61,7 @@ const ComponentLayout = () => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed overflow-y-scroll left-0 top-16 bottom-0 z-40 w-56 lg:w-64 border-r border-(--border-color) px-4 py-6
+          fixed overflow-y-scroll left-0 top-16 bottom-0 z-30 w-56 lg:w-64 border-r border-(--border-color) px-4 py-6
           transition-transform duration-300 ease-in-out md:top-16 md:translate-x-0 bg-(--bg-color)
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
