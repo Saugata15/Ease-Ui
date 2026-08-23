@@ -220,8 +220,8 @@ const SkeletonPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Skeleton } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Skeleton } from "easeui-react";`}
       />
 
       {/* Features */}

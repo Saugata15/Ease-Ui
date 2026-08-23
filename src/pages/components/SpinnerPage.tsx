@@ -176,8 +176,8 @@ const SpinnerPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Spinner } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Spinner } from "easeui-react";`}
       />
 
       {/* Features */}

@@ -20,7 +20,7 @@ const AboutCTA = () => {
 
         <div className="mx-auto mt-6 max-w-md rounded-xl border border-(--border-color) bg-(--bg-box) px-4 py-3 text-left font-mono text-sm">
           <span className="text-(--muted-text-color)">$</span> npm install
-          ease-ui
+          easeui-react
         </div>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -36,7 +36,7 @@ const AboutCTA = () => {
             variant="outline"
             hoverAnimation="scale"
             onClick={() => {
-              window.open("https://github.com/Saugata15/Ease-Ui", "_blank");
+              window.open("https://github.com/Saugata15/ease-ui", "_blank");
             }}
           >
             <Github size={16} />

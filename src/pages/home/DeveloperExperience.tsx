@@ -45,7 +45,7 @@ const DeveloperExperience = () => {
           </div>
 
           <pre className="p-6 overflow-x-auto text-sm leading-7 text-(--muted-text-color)">
-            <code>{`import { Button } from "ease-ui";
+            <code>{`import { Button } from "easeui-react";
 
 <Button
   variant="primary"

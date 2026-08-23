@@ -106,8 +106,8 @@ const TooltipPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Tooltip } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Tooltip } from "easeui-react";`}
       />
 
       {/* Features */}

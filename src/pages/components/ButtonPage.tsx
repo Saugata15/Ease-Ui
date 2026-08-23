@@ -223,8 +223,8 @@ const ButtonPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Button } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Button } from "easeui-react";`}
       />
 
       {/* Features */}

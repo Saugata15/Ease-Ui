@@ -1,11 +1,11 @@
-export const basicUsageCode = `import { Toast } from "@/components/Toast/Toast";
+export const basicUsageCode = `import { Toast } from "easeui-react";
 
 <Toast
   title="Success"
   description="Your changes have been saved."
 />`;
 
-export const variantsCode = `import { Toast } from "@/components/Toast/Toast";
+export const variantsCode = `import { Toast } from "easeui-react";
 
 <Toast
   variant="default"
@@ -43,7 +43,7 @@ export const variantsCode = `import { Toast } from "@/components/Toast/Toast";
   description="Your account has been updated."
 />`;
 
-export const sizesCode = `import { Toast } from "@/components/Toast/Toast";
+export const sizesCode = `import { Toast } from "easeui-react";
 
 <Toast
   size="sm"
@@ -64,7 +64,7 @@ export const sizesCode = `import { Toast } from "@/components/Toast/Toast";
 />`;
 
 export const closeButtonCode = `import { useState } from "react";
-import { Toast } from "@/components/Toast/Toast";
+import { Toast } from "easeui-react";
 
 const Example = () => {
   const [open, setOpen] = useState(true);
@@ -80,7 +80,7 @@ const Example = () => {
   );
 };`;
 
-export const autoDismissCode = `import { Toast } from "@/components/Toast/Toast";
+export const autoDismissCode = `import { Toast } from "easeui-react";
 
 <Toast
   title="Saved"
@@ -90,7 +90,7 @@ export const autoDismissCode = `import { Toast } from "@/components/Toast/Toast"
 />`;
 
 export const controlledCode = `import { useState } from "react";
-import { Toast } from "@/components/Toast/Toast";
+import { Toast } from "easeui-react";
 
 const Example = () => {
   const [open, setOpen] = useState(true);

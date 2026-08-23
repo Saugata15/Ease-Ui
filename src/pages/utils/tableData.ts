@@ -75,7 +75,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from "@/components/Table/Table";
+} from "easeui-react";
 
 <Table>
   <TableHeader>

@@ -57,8 +57,8 @@ export const features = [
 
 
 export const basicUsageCode = `
-import { Tooltip } from "ease-ui";
-import { Button } from "ease-ui";
+import { Tooltip } from "easeui-react";
+import { Button } from "easeui-react";
 import { Info, User, Trash2, Settings } from "lucide-react";
 
 <Tooltip content="This is a tooltip">
@@ -91,7 +91,7 @@ import { Info, User, Trash2, Settings } from "lucide-react";
 `;
 
 export const variantsCode = `
-import { Tooltip } from "ease-ui";
+import { Tooltip } from "easeui-react";
 
 <Tooltip content="Light tooltip" variant="light">
   <button>Light</button>

@@ -1,8 +1,8 @@
-export const basicUsageCode = `import { Spinner } from "@/components/Spinner/Spinner";
+export const basicUsageCode = `import { Spinner } from "easeui-react";
 
 <Spinner />`;
 
-export const variantsCode = `import { Spinner } from "@/components/Spinner/Spinner";
+export const variantsCode = `import { Spinner } from "easeui-react";
 
 <Spinner variant="default" />
 
@@ -18,7 +18,7 @@ export const variantsCode = `import { Spinner } from "@/components/Spinner/Spinn
 
 <Spinner variant="white" />`;
 
-export const sizesCode = `import { Spinner } from "@/components/Spinner/Spinner";
+export const sizesCode = `import { Spinner } from "easeui-react";
 
 <Spinner size="sm" />
 
@@ -28,7 +28,7 @@ export const sizesCode = `import { Spinner } from "@/components/Spinner/Spinner"
 
 <Spinner size="xl" />`;
 
-export const buttonLoadingCode = `import { Spinner } from "@/components/Spinner/Spinner";
+export const buttonLoadingCode = `import { Spinner } from "easeui-react";
 
 <Button
   variant="primary"
@@ -43,7 +43,7 @@ export const buttonLoadingCode = `import { Spinner } from "@/components/Spinner/
   Loading...
 </Button>`;
 
-export const fullPageCode = `import { Spinner } from "@/components/Spinner/Spinner";
+export const fullPageCode = `import { Spinner } from "easeui-react";
 
 <div className="flex min-h-64 items-center justify-center">
   <Spinner size="xl" />

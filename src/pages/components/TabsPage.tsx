@@ -374,8 +374,8 @@ const TabsPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Tabs , TabsList , TabsTrigger , TabsContent } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Tabs , TabsList , TabsTrigger , TabsContent } from "easeui-react";`}
       />
 
       {/* Features */}

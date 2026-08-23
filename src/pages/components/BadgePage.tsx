@@ -184,8 +184,8 @@ const BadgePage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Badge } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Badge } from "easeui-react";`}
       />
 
       {/* Features */}

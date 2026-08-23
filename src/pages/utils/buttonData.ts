@@ -1,5 +1,5 @@
 export const basicUsageCode = `
-import { Button } from "ease-ui";
+import { Button } from "easeui-react";
 
 <Button
   variant="primary"
@@ -39,7 +39,7 @@ import { Button } from "ease-ui";
 `;
 
 export const variantsCode = `
-import { Button } from "ease-ui";
+import { Button } from "easeui-react";
 
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -52,7 +52,7 @@ import { Button } from "ease-ui";
 `;
 
 export const sizesCode = `
-import { Button } from "ease-ui";
+import { Button } from "easeui-react";
 
 <Button size="sm">Small</Button>
 <Button size="lg">Large</Button>
@@ -63,7 +63,7 @@ import { Button } from "ease-ui";
 `;
 
 export const animationsCode = `
-import { Button } from "ease-ui";
+import { Button } from "easeui-react";
 
 <Button animation="fadeIn">
   Fade In
@@ -83,7 +83,7 @@ import { Button } from "ease-ui";
 `;
 
 export const hoverAnimationsCode = `
-import { Button } from "ease-ui";
+import { Button } from "easeui-react";
 
 <Button hoverAnimation="jiggle">
   Jiggle

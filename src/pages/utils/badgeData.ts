@@ -1,8 +1,8 @@
-export const basicUsageCode = `import { Badge } from "@/components/Badge/Badge";
+export const basicUsageCode = `import { Badge } from "easeui-react";
 
 <Badge>Default</Badge>`;
 
-export const variantsCode = `import { Badge } from "@/components/Badge/Badge";
+export const variantsCode = `import { Badge } from "easeui-react";
 
 <Badge variant="default">
   Default
@@ -36,7 +36,7 @@ export const variantsCode = `import { Badge } from "@/components/Badge/Badge";
   Glass
 </Badge>`;
 
-export const sizesCode = `import { Badge } from "@/components/Badge/Badge";
+export const sizesCode = `import { Badge } from "easeui-react";
 
 <Badge size="sm">
   Small
@@ -51,7 +51,7 @@ export const sizesCode = `import { Badge } from "@/components/Badge/Badge";
 </Badge>`;
 
 export const iconsCode = `import { Check, Info, AlertTriangle } from "lucide-react";
-import { Badge } from "@/components/Badge/Badge";
+import { Badge } from "easeui-react";
 
 <Badge variant="success" className="gap-1.5">
   <Check size={12} />
@@ -68,7 +68,7 @@ import { Badge } from "@/components/Badge/Badge";
   Warning
 </Badge>`;
 
-export const statusCode = `import { Badge } from "@/components/Badge/Badge";
+export const statusCode = `import { Badge } from "easeui-react";
 
 <div className="flex items-center gap-3">
   <span>Account Status</span>

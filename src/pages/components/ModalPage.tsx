@@ -121,8 +121,8 @@ const ModalPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Modal } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Modal } from "easeui-react";`}
       />
 
       {/* Features */}

@@ -200,8 +200,8 @@ const InputPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Input } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Input } from "easeui-react";`}
       />
 
       {/* Features */}

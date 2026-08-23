@@ -195,8 +195,8 @@ const ToastPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Toast } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Toast } from "easeui-react";`}
       />
 
       {/* Features */}

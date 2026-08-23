@@ -176,8 +176,8 @@ const CardPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Card } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Card } from "easeui-react";`}
       />
 
       {/* Features */}

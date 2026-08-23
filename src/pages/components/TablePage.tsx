@@ -335,8 +335,8 @@ const TablePage = () => {
 
       {/* Installations */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import {Table, TableHeader, TableBody, TableRow, TableHead, TableCell} from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import {Table, TableHeader, TableBody, TableRow, TableHead, TableCell} from "easeui-react";`}
       />
 
       {/* Features */}

@@ -1,7 +1,7 @@
 export const lightModalCode = `
 import { useState } from "react";
-import { Button } from "ease-ui";
-import { Modal } from "ease-ui";
+import { Button } from "easeui-react";
+import { Modal } from "easeui-react";
 
 const [isOpen, setIsOpen] = useState(false);
 
@@ -30,8 +30,8 @@ const [isOpen, setIsOpen] = useState(false);
 
 export const darkModalCode = `
 import { useState } from "react";
-import { Button } from "ease-ui";
-import { Modal } from "ease-ui";
+import { Button } from "easeui-react";
+import { Modal } from "easeui-react";
 
 const [isOpen, setIsOpen] = useState(false);
 
@@ -60,8 +60,8 @@ const [isOpen, setIsOpen] = useState(false);
 
 export const outlineModalCode = `
 import { useState } from "react";
-import { Button } from "ease-ui";
-import { Modal } from "ease-ui";
+import { Button } from "easeui-react";
+import { Modal } from "easeui-react";
 
 const [isOpen, setIsOpen] = useState(false);
 

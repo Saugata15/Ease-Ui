@@ -7,7 +7,7 @@ interface DocsInstallationProps {
 }
 
 const DocsInstallation = ({
-  packageName = "ease-ui",
+  packageName = "easeui-react",
   importCode,
 }: DocsInstallationProps) => {
   const [copied, setCopied] = useState<"install" | "import" | null>(null);

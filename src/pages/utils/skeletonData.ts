@@ -21,11 +21,11 @@ export const skeletonFeatures: SkeletonFeature[] = [
   },
 ];
 
-export const skeletonBasicCode = `import { Skeleton } from "@/components/Skeleton/Skeleton";
+export const skeletonBasicCode = `import { Skeleton } from "easeui-react";
 
 <Skeleton className="h-6 w-48" />`;
 
-export const skeletonVariantsCode = `import { Skeleton } from "@/components/Skeleton/Skeleton";
+export const skeletonVariantsCode = `import { Skeleton } from "easeui-react";
 
 <Skeleton
   variant="default"
@@ -47,7 +47,7 @@ export const skeletonVariantsCode = `import { Skeleton } from "@/components/Skel
   className="h-12 w-12"
 />`;
 
-export const skeletonAnimationCode = `import { Skeleton } from "@/components/Skeleton/Skeleton";
+export const skeletonAnimationCode = `import { Skeleton } from "easeui-react";
 
 <Skeleton
   animation="pulse"
@@ -59,7 +59,7 @@ export const skeletonAnimationCode = `import { Skeleton } from "@/components/Ske
   className="h-6 w-full"
 />`;
 
-export const skeletonCardCode = `import { Skeleton } from "@/components/Skeleton/Skeleton";
+export const skeletonCardCode = `import { Skeleton } from "easeui-react";
 
 <div className="w-full max-w-sm space-y-4">
   <Skeleton className="h-48 w-full" />
@@ -83,7 +83,7 @@ export const skeletonCardCode = `import { Skeleton } from "@/components/Skeleton
   </div>
 </div>`;
 
-export const skeletonListCode = `import { Skeleton } from "@/components/Skeleton/Skeleton";
+export const skeletonListCode = `import { Skeleton } from "easeui-react";
 
 <div className="space-y-5">
   {Array.from({ length: 4 }).map((_, index) => (

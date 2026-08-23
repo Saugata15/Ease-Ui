@@ -3,7 +3,7 @@ export const basicUsageCode = `import {
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "ease-ui";
+} from "easeui-react";
 
 <Tabs defaultValue="account">
   <TabsList>

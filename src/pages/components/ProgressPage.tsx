@@ -193,8 +193,8 @@ const ProgressPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Progress } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Progress } from "easeui-react";`}
       />
 
       {/* Features */}

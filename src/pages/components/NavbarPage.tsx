@@ -106,8 +106,8 @@ const NavbarPage = () => {
 
       {/* Installation */}
       <DocsInstallation
-        packageName="ease-ui"
-        importCode={`import { Navbar } from "ease-ui";`}
+        packageName="easeui-react"
+        importCode={`import { Navbar } from "easeui-react";`}
       />
 
       {/* Features */}

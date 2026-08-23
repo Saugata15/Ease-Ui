@@ -2,8 +2,8 @@ export const cardImage =
   "https://images.unsplash.com/photo-1761198047035-577c8a197375?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1015";
 
 export const animatedCard = `
-import { Card } from "ease-ui";
-import { Button } from "ease-ui";
+import { Card } from "easeui-react";
+import { Button } from "easeui-react";
 
 <Card
   title="Modern Animated Card"
@@ -27,8 +27,8 @@ import { Button } from "ease-ui";
 `;
 
 export const darkCard = `
-import { Card } from "ease-ui";
-import { Button } from "ease-ui";
+import { Card } from "easeui-react";
+import { Button } from "easeui-react";
 
 <Card
   title="Modern Animated Card"
@@ -52,8 +52,8 @@ import { Button } from "ease-ui";
 `;
 
 export const outlineCard = `
-import { Card } from "ease-ui";
-import { Button } from "ease-ui";
+import { Card } from "easeui-react";
+import { Button } from "easeui-react";
 
 <Card
   title="Modern Animated Card"
@@ -77,8 +77,8 @@ import { Button } from "ease-ui";
 `;
 
 export const wobbleCard = `
-import { Card } from "ease-ui";
-import { Button } from "ease-ui";
+import { Card } from "easeui-react";
+import { Button } from "easeui-react";
 
 <Card
   title="Wobble Follow"

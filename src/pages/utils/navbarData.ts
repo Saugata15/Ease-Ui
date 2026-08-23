@@ -68,7 +68,7 @@ export const features = [
   ];
 
 export const usageCode = `
-import { Navbar } from "@/components/navbar"
+import { Navbar } from "easeui-react"
 
 <Navbar
   variant="light"

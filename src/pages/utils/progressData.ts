@@ -1,8 +1,8 @@
-export const basicUsageCode = `import { Progress } from "@/components/Progress/Progress";
+export const basicUsageCode = `import { Progress } from "easeui-react";
 
 <Progress value={60} />`;
 
-export const variantsCode = `import { Progress } from "@/components/Progress/Progress";
+export const variantsCode = `import { Progress } from "easeui-react";
 
 <Progress value={60} variant="default" />
 
@@ -16,7 +16,7 @@ export const variantsCode = `import { Progress } from "@/components/Progress/Pro
 
 <Progress value={60} variant="info" />`;
 
-export const sizesCode = `import { Progress } from "@/components/Progress/Progress";
+export const sizesCode = `import { Progress } from "easeui-react";
 
 <Progress value={60} size="sm" />
 
@@ -24,7 +24,7 @@ export const sizesCode = `import { Progress } from "@/components/Progress/Progre
 
 <Progress value={60} size="lg" />`;
 
-export const showValueCode = `import { Progress } from "@/components/Progress/Progress";
+export const showValueCode = `import { Progress } from "easeui-react";
 
 <Progress
   value={25}
@@ -43,7 +43,7 @@ export const showValueCode = `import { Progress } from "@/components/Progress/Pr
   variant="success"
 />`;
 
-export const progressStatesCode = `import { Progress } from "@/components/Progress/Progress";
+export const progressStatesCode = `import { Progress } from "easeui-react";
 
 <Progress
   value={0}

@@ -1,5 +1,5 @@
 export const basicUsageCode = `
-import { Input } from "ease-ui";
+import { Input } from "easeui-react";
 
 <Input
   label="Full Name"
@@ -29,7 +29,7 @@ import {
   InputWithIcon,
   PasswordInput,
   NumberInput,
-} from "ease-ui";
+} from "easeui-react";
 import { Search } from "lucide-react";
 
 <AnimatedInput
@@ -57,7 +57,7 @@ import { Search } from "lucide-react";
 `;
 
 export const sizesCode = `
-import { Input } from "ease-ui";
+import { Input } from "easeui-react";
 
 <Input
   label="Small Input"
@@ -79,7 +79,7 @@ import { Input } from "ease-ui";
 `;
 
 export const statesCode = `
-import { Input } from "ease-ui";
+import { Input } from "easeui-react";
 
 <Input
   label="Default"
