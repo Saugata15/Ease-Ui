@@ -2,7 +2,7 @@
   "name": "ease-ui",
   "version": "1.0.6",
   "description": "A modern React UI library by Saugata Das",
-  "author": "Saugata das",
+  "author": "Saugata Das",
   "license": "MIT",
   "main": "dist/easeui.umd.js",
   "module": "dist/easeui.es.js",
@@ -13,6 +13,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/easeui.es.js",
       "require": "./dist/easeui.umd.js"
     },

@@ -4,7 +4,6 @@ import {
   Linkedin,
   Sparkles,
   UserRound,
-  Users,
 } from "lucide-react";
 
 import { Badge } from "@/components/Badge/Badge";

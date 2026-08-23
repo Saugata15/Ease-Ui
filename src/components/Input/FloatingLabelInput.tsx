@@ -47,10 +47,17 @@ const inputCls = cva(
   }
 );
 
+type InputVariantProps = VariantProps<typeof inputCls>;
+
 export interface FloatingLabelProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputCls> {
+  extends Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "size" | "disabled"
+    >,
+    Omit<InputVariantProps, "size" | "disabled"> {
   label: string;
+  size?: "sm" | "md" | "lg";
+  disabled?: boolean;
   error?: string;
   hint?: string;
 }
@@ -135,7 +142,7 @@ export const FloatingLabelInput = React.forwardRef<
             htmlFor={inputId}
             className={cn(
               "pointer-events-none absolute left-0 origin-left",
-              "text-[var(--text-color)]",
+              "text-(--text-color)",
               "transition-all duration-200 ease-out",
               shrink
                 ? "-translate-y-1 scale-75 opacity-70"
@@ -154,7 +161,6 @@ export const FloatingLabelInput = React.forwardRef<
             )}
           </label>
 
-          {/* Animated focus indicator */}
           <span
             className={cn(
               "pointer-events-none absolute bottom-0 left-0 h-0.5",
