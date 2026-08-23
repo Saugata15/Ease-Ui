@@ -34,7 +34,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20">
+    <section className="max-w-6xl mx-auto px-6 pt-5 md:pt-0 py-20">
       <div className="max-w-2xl mb-12">
         <p className="text-sm font-semibold uppercase tracking-wider text-indigo-500">
           Why EaseUI

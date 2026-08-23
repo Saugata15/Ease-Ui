@@ -9,7 +9,7 @@ const HeroSection = () => {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.14),transparent_45%)]" />
 
-      <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-24 lg:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-(--border-color) bg-(--card-bg) text-sm text-(--muted-text-color)">
             <Sparkles size={15} />

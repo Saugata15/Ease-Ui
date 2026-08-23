@@ -4,9 +4,8 @@ import ComponentLayout from "../layouts/ComponentLayout";
 import HomePage from "../pages/HomePage";
 
 import { lazy } from "react";
-import ProgressPage from "@/pages/components/ProgressPage";
-import ToastPage from "@/pages/components/ToastPage";
-import SpinnerPage from "@/pages/components/SpinnerPage";
+import TabsPage from "@/pages/components/TabsPage";
+
 let AboutPage = lazy(() => import("@/pages/AboutPage"));
 let TemplatesPage = lazy(() => import("@/pages/TemplatesPage"));
 let TooltipPage = lazy(() => import("@/pages/components/TooltipPage"));
@@ -18,6 +17,9 @@ let ButtonPage = lazy(() => import("@/pages/components/ButtonPage"));
 let TablePage = lazy(() => import("@/pages/components/TablePage"));
 let SkeletonPage = lazy(() => import("@/pages/components/SkeletonPage"));
 let BadgePage = lazy(() => import("@/pages/components/BadgePage"));
+let ToastPage = lazy(() => import("@/pages/components/ToastPage"));
+let ProgressPage = lazy(() => import("@/pages/components/ProgressPage"));
+let SpinnerPage = lazy(() => import("@/pages/components/SpinnerPage"));
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -93,6 +95,10 @@ const AppRouter = () => {
             {
               path: "spinner",
               element: <SpinnerPage />,
+            },
+            {
+              path: "tabs",
+              element: <TabsPage />,
             },
           ],
         },

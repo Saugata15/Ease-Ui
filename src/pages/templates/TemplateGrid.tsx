@@ -20,7 +20,7 @@ const TemplateGrid = () => {
   return (
     <section
       id="templates"
-      className="max-w-7xl mx-auto px-6 pb-24"
+      className="max-w-7xl mx-auto px-6 max-md:pt-8 pb-20 md:pb-24"
     >
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">

@@ -15,6 +15,7 @@ const components = [
   { label: "Progress", path: "progress" },
   { label: "Toast", path: "toast" },
   { label: "Spinner", path: "spinner" },
+  { label: "Tabs", path: "tabs" },
 ];
 
 const ComponentLayout = () => {
