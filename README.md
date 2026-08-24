@@ -1,73 +1,141 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+🧩 Components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+EaseUI currently includes:
 
-## React Compiler
+Button
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Card
 
-## Expanding the ESLint configuration
+Modal
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Input
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Navbar
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Tooltip
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Table
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Skeleton
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Badge
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Progress
+
+Toast
+
+Spinner
+
+Tabs
+
+More components will be added over time.
+
+🛠️ Tech Stack
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+Class Variance Authority
+
+Radix UI Slot
+
+Lucide React
+
+Vite
+
+GSAP
+
+✨ Features
+
+♻️ Reusable React components
+
+🎨 Customizable variants and sizes
+
+🌙 Dark mode support
+
+📱 Responsive design
+
+✨ Animation support
+
+🔧 TypeScript support
+
+🧩 Composable components
+
+⚡ Vite-powered development
+
+📦 Available as an npm package
+
+📚 Documentation
+
+For detailed component documentation, examples, API references, and usage instructions:
+
+EaseUI Documentation
+
+💻 Development
+
+Clone the repository:
+
+git clone https://github.com/Saugata15/Ease-Ui.git
+
+Navigate into the project:
+
+cd Ease-Ui
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
+npm run dev
+
+🏗️ Build
+
+Build the EaseUI package:
+
+npm run build
+
+Preview the production build:
+
+npm run preview
+
+📁 Project Structure
+
+src/
+├── components/
+│   ├── Badge/
+│   ├── Button/
+│   ├── Card/
+│   ├── Input/
+│   ├── Modal/
+│   ├── Navbar/
+│   ├── Progress/
+│   ├── Skeleton/
+│   ├── Spinner/
+│   ├── Table/
+│   ├── Tabs/
+│   ├── Toast/
+│   └── Tooltip/
+│
+├── layouts/
+├── pages/
+├── libs/
+├── router/
+└── store/
+
+📄 License
+
+EaseUI is open source and available under the MIT License.
+
+👨‍💻 Author
+
+Saugata Das
+
+GitHub: @Saugata15
+
+⭐ If you find EaseUI useful, consider giving the repository a star!
