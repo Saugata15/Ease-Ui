@@ -21,7 +21,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc -p tsconfig.lib.json",
+    "build": "vite build --mode library && tsc -p tsconfig.lib.json",
+    "build:docs": "vite build --mode docs",
     "preview": "vite preview"
   },
   "peerDependencies": {
