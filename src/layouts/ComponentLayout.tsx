@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NavLink, Outlet } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 
 const components = [
@@ -20,6 +20,15 @@ const components = [
 
 const ComponentLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
 
   const closeSidebar = () => {
     setSidebarOpen(false);
@@ -43,8 +52,7 @@ const ComponentLayout = () => {
         aria-label={sidebarOpen ? "Close navigation" : "Open navigation"}
         aria-expanded={sidebarOpen}
         onClick={() => setSidebarOpen((prev) => !prev)}
-        className=
-          {`fixed top-20 z-35
+        className={`fixed top-20 z-35
           flex h-9 w-9 items-center justify-center
           rounded-lg border border-(--border-color)
           bg-(--card-bg)
@@ -120,7 +128,10 @@ const ComponentLayout = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="min-w-0 flex-1 overflow-y-auto md:ml-56 lg:ml-64">
+      <main
+        ref={mainRef}
+        className="min-w-0 flex-1 overflow-y-auto md:ml-56 lg:ml-64"
+      >
         <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 md:px-8 lg:px-10 lg:py-10">
           <Outlet />
         </div>
